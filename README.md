@@ -1,4 +1,4 @@
-# eth2launch - ETH2.0 post merge node operator launch tamplate
+# eth2launch - ETH2.0 FullNode Launch Tamplate
 
 ## Background
 ### The Merge and the Stucked Node
@@ -65,5 +65,5 @@ $ watch -n 1 docker logs -n 20 watch -n 1 docker logs -n 20 eth2launch_lighthous
 
 
 ## Author
-@xhyumiracle
-@iczc
+https://github.com/xhyumiracle
+https://github.com/iczc
