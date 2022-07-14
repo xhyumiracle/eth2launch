@@ -26,28 +26,28 @@ Note: the following Instructions is for sepolia testnet, which is also merged in
 
 ## Instructions
 1. genereate jwt token for engine API (port 8551 by default)
-```
+```bash
 $ ./gen_jwt.sh > "jwt.hex"
 ```
 
 2. modify your geth node ip in docker-compose.yml
 - currently there's an issue using docker service name, so have to use the host ip or the public ip as an work around
 in `docker-compose.yml`, replace `<geth_ip>` with the actual geth ip
-```
+```dockerfile
 - --eth1-endpoints=http://<geth_ip>:8545
 - --execution-endpoints=http://<geth_ip>:8551
 ```
 
 3. run docker compose
-```
+```bash
 $ docker-compose up -d
 ```
 
 4. check docker logs:
-```
+```bash
 $ watch -n 1 docker logs -n 20 watch -n 1 docker logs -n 20 eth2launch_geth_1
 ```
-```
+```bash
 $ watch -n 1 docker logs -n 20 watch -n 1 docker logs -n 20 eth2launch_lighthouse_1
 ```
 
