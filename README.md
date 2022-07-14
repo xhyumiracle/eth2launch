@@ -31,9 +31,9 @@ $ ./gen_jwt.sh > "jwt.hex"
 ```
 
 2. modify your geth node ip in docker-compose.yml
-- currently there's an issue using docker service name, so have to use the host ip or the public ip as an work around
-in `docker-compose.yml`, replace `<geth_ip>` with the actual geth ip
-```dockerfile
+- currently there's an issue using docker service name, so we use the host ip or the public ip as an work around
+in `docker-compose.yml`, replace `<geth_ip>` with the actual host ip
+```docker
 - --eth1-endpoints=http://<geth_ip>:8545
 - --execution-endpoints=http://<geth_ip>:8551
 ```
