@@ -1,0 +1,56 @@
+version: "3"
+services:
+  geth:
+    image: ethereum/client-go:latest
+    restart: unless-stopped
+    ports:
+      - "30303:30303"
+      - "30303:30303/udp"
+      - "8545:8545"
+      - "8546:8546"
+      - "8551:8551"
+    volumes:
+      - ./chaindata:/root/.ethereum
+      - ./jwt.hex:/root/jwt.hex
+    command:
+      - --sepolia
+      - --syncmode=full
+      - --gcmode=archive
+      - --http
+      - --http.api
+      - "debug,eth,net,web3,txpool,engine"
+      - --http.addr=0.0.0.0
+      - --http.vhosts=*
+      - --http.corsdomain=*
+      - --ws
+      - --ws.api
+      - "eth,net,web3,txpool,engine"
+      - --ws.addr=0.0.0.0
+      - --authrpc.addr=0.0.0.0
+      - --authrpc.port=8551
+      - --authrpc.jwtsecret=/root/jwt.hex
+
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: "2m"
+#        max-file: "10"
+#
+  lighthouse:
+    image: sigp/lighthouse:latest-unstable
+    restart: unless-stopped
+    volumes:
+      - ./lighthouse:/root/.lighthouse
+      - ./jwt.hex:/root/jwt.hex
+    links:
+      - geth
+    command:
+      - lighthouse
+      - bn
+      - --eth1-endpoints=http://<geth_ip>:8545
+      - --execution-endpoints=http://<geth_ip>:8551
+        #- --eth1-endpoints=http://geth:8545
+        #- --execution-endpoints=http://geth:8551
+      - --network=sepolia
+      - --jwt-secrets=/root/jwt.hex
+        #- --execution-jwt=/root/jwt.hex
