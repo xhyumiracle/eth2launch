@@ -65,5 +65,5 @@ $ watch -n 1 docker logs -n 20 watch -n 1 docker logs -n 20 eth2launch_lighthous
 
 
 ## Author
-https://github.com/xhyumiracle
-https://github.com/iczc
+[@xhyumiracle](https://github.com/xhyumiracle)
+[@iczc](https://github.com/iczc)
